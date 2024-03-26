@@ -1,0 +1,134 @@
+{smcl}
+{* *! version 1.2.1  07mar2013}{...}
+{findalias asfradohelp}{...}
+{vieweralsosee "" "--"}{...}
+{vieweralsosee "[R] help" "help help"}{...}
+{viewerjumpto "Syntax" "examplehelpfile##syntax"}{...}
+{viewerjumpto "Description" "examplehelpfile##description"}{...}
+{viewerjumpto "Options" "examplehelpfile##options"}{...}
+{viewerjumpto "Remarks" "examplehelpfile##remarks"}{...}
+{viewerjumpto "Examples" "examplehelpfile##examples"}{...}
+{title:Title}
+
+{phang}
+{bf:ptest} {hline 2} Model postestimation likelihood ratio test of specific variable(s)
+
+
+{marker syntax}{...}
+{title:Syntax}
+
+{p 8 17 2}
+{cmdab:ptest}
+[{varlist}]
+[{cmd:,} {it:options}]
+
+{synoptset 20 tabbed}{...}
+{synopthdr}
+{synoptline}
+{syntab:Main}
+{synopt:{opt no:show}}hides addition model information{p_end}
+{synopt:{opt nov:iew}}hides variable(s) that are being tested{p_end}
+{synoptline}
+{p2colreset}{...}
+
+
+{marker description}{...}
+{title:Description}
+
+{pstd}
+{cmd:ptest} runs postestimation likelihood ratio tests on the variable(s) specified by 
+the user. Particularly, the Heterogeneity test, Linearity test and Non-Linearity test; 
+all reported by p-values. The program will automatically re-run the null model, specified 
+before this postestimation command, adjusting for the variable(s) that were specified by 
+the user.
+
+{pstd}
+{cmd:(1)} The heterogeneity test on a single variable determines whether the 
+specified variable is significant in the model (i.e. null vs nested models); 
+
+{pstd}
+{cmd:(2)} The linearity test determines whether the specified variable is significant in linear form
+(i.e. nested vs linear models); 
+
+{pstd}
+{cmd:(3)} The non-linearity test determines whether the specified variable should be in a categorical 
+or linear form (i.e. null vs linear models) - note: if the testing variable is already in a
+linear form, then this will return a null result.
+
+{pstd}
+{cmd:(4)} The polynomial (order-2) test determines whether the specified variable should have a 
+squared term (i.e. age + {age_squared} is significant) - note: this should only be used when 
+the testing variable is specified as a linear form.
+
+{pstd}
+{cmd:(5)} The polynomial (order-3) test determines whether the specified variable should have a 
+cubic term (i.e. age + {age_squared} + {age_cubed} is significant) - note: this should only 
+be used when the testing variable is specified as a linear form.
+
+
+{marker options}{...}
+{title:Options}
+
+{dlgtab:Main}
+
+{phang}
+{opt noshow} hides additional model information that shows the models that are
+fitted for testing.
+
+{phang}
+{opt noview} hides row information of variable(s) being tested.
+
+
+{marker remarks}{...}
+{title:Bugs, Fixes and Updates}
+
+{pstd} version 7.7 - 20.02.2018{p_end}
+7.7.1 Added P-tests for Polynomials of the second and third order
+7.7.2 Program re-initialised and checked for bugs - no faults found.
+7.7.3 Help file updated accordingly.
+
+{pstd} version 7.6 - 03.10.2013{p_end}
+7.6.1 Visuals updated.
+7.6.2 Program re-run and re-tested - no bugs or faults found.
+
+{pstd} version 7.5 - 01.08.2013{p_end}
+7.5.1 New output line added to allow user to see variable(s) being tested.
+7.5.2 Option noview was added to allow user to enhance visuals by removing tested variables from output screen.
+7.5.3 Program optimised for efficiency - estadd.ado is no longer a requirement.
+7.5.4 Help file updated accordingly.
+
+{pstd} version 7.4 - 19.07.2013{p_end}
+7.4.1 Option noshow was added to allow user to enhance visuals by removing fitted models from output screen.
+7.4.2 Minor fix applied to e(sample) bug; e(sample) command was repeated if run consecutively on the same null model.
+7.4.3 Help file created for distribution.
+
+
+
+{marker examples}{...}
+{title:Examples}
+
+{phang}{cmd:. sysuse auto}{p_end}
+
+{phang}{cmd:. regress price mpg i.rep78 weight length i.turn}{p_end}
+
+{phang}{cmd:. ptest i.turn}{p_end}
+
+
+
+{title:Author}
+
+{pstd} Kwok F. Wong{p_end}
+National Cancer Registration and Analysis Service
+Public Health England, UK
+({browse "mailto:kwok.wong@phe.gov.uk":kwok.wong@phe.gov.uk})
+
+{pstd} Kwok F. Wong{p_end}
+Centre for Childhood Cancer Survivor Studies
+University of Birmingham, UK
+({browse "mailto:kxw836@bham.ac.uk":kxw836@bham.ac.uk})
+
+{pstd} Raoul C. Reulen{p_end}
+Centre for Childhood Cancer Survivor Studies
+University of Birmingham, UK
+({browse "mailto:r.c.reulen@bham.ac.uk":r.c.reulen@bham.ac.uk})
+
